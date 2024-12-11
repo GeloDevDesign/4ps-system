@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin message.css">
+    <link rel="stylesheet" href="your-external-styles.css"> <!-- Add your external CSS file here -->
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>4Ps Super Admin</h2>
+            <nav>
+                <ul>
+                    <li><a href="superadmin.html" class="">Dashboard</a></li>
+                    <li><a href="adminsidemm.html">Manage Members</a></li>
+                    <li><a href="adminsidemeeting.html">Meeting</a></li>
+                    <li><a href="adminsideupdates.html">Updates</a></li>
+                    <li><a href="#" class="active">Message</a></li>
+                    <li><a href="adminside 4psmm dashboard.html">4Ps Members Dashboard</a></li>
+                    <li><a href="admin_regform.html">Register New Admin</a></li>
+                    <li><a href="homepagelogin.html">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <section class="main-content">
+            <div class="message-dashboard">
+                <h2>Message Dashboard</h2>
+                <div class="message-box" id="message-box">
+                    <!-- Existing messages will be displayed here -->
+                </div>
+
+                <div class="message-input">
+                    <textarea id="admin-message" placeholder="Type your reply here..."></textarea>
+                    <button class="send-button" id="send-button"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Function to get current date and time
+        function getCurrentDateTime() {
+            let now = new Date();
+            return now.toLocaleString();
+        }
+
+        // Load messages from localStorage
+        function loadMessages() {
+            const messages = JSON.parse(localStorage.getItem("messages")) || [];
+            const messageBox = document.getElementById("message-box");
+            messageBox.innerHTML = ""; // Clear existing messages
+
+            messages.forEach((message, index) => {
+                const newMessageDiv = document.createElement("div");
+                newMessageDiv.classList.add("message", message.role);
+                newMessageDiv.innerHTML = `
+                    <p>${message.text}</p>
+                    <span class="message-time">${message.role.charAt(0).toUpperCase() + message.role.slice(1)} - ${message.time}</span>
+                    ${message.role === "admin" ? `<button class="delete-button" onclick="deleteMessage(${index})">Delete</button>` : ''}
+                `;
+                messageBox.appendChild(newMessageDiv);
+            });
+        }
+
+        // Function to send admin message
+        document.getElementById("send-button").addEventListener("click", function() {
+            const messageText = document.getElementById("admin-message").value;
+            if (messageText.trim() !== "") {
+                const message = {
+                    role: "admin",
+                    text: messageText,
+                    time: getCurrentDateTime()
+                };
+
+                // Retrieve existing messages and add the new one
+                const messages = JSON.parse(localStorage.getItem("messages")) || [];
+                messages.push(message);
+                localStorage.setItem("messages", JSON.stringify(messages));
+
+                // Clear the textarea and reload messages
+                document.getElementById("admin-message").value = "";
+                loadMessages();
+            }
+        });
+
+        // Function to delete admin messages only
+        function deleteMessage(index) {
+            const messages = JSON.parse(localStorage.getItem("messages")) || [];
+            
+            if (messages[index].role === "admin") { // Allow deletion only for admin messages
+                messages.splice(index, 1); // Remove the message at the specified index
+                localStorage.setItem("messages", JSON.stringify(messages));
+                loadMessages(); // Reload messages after deletion
+            }
+        }
+
+        // Load messages on page load
+        window.onload = loadMessages;
+    </script>
+</body>
+</html>
+
+
+
+
+

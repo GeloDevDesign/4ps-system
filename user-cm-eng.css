@@ -1,0 +1,484 @@
+
+/* General Styling */
+body{
+    background-image:url('4psbackground2.jfif');
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    border-radius:50px ;
+    object-fit:cover;
+    
+    }
+    .header-mother-div{
+        background-color: darkblue;
+        height: 70px;
+        border-radius: 10px;    
+        padding-top: 30px;
+    }
+    
+    
+    
+    .user-div{
+        margin-left: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 40px;
+        width: 17px;
+        text-align: center;
+        font-size: 20px;
+    }
+    .header-div1{
+        margin-top: -10px;
+    }
+
+    h1{
+        text-align: center;
+        color:yellow;
+        font-size: 50px;
+        margin-top: -60px;
+    }
+    
+      h2{
+        font-style: oblique;
+      }
+
+    .icon-div{
+        display: flex;
+        justify-content: center;
+        width: 1145px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid white;
+        margin-top: -45px;
+        margin-left: 95px;
+        border-radius: 10px;
+       
+        
+    }
+
+
+
+
+
+
+    .pic{
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+        
+
+    }
+     .logo-pic{
+
+        margin-top: -90px;
+        margin-left: 1240px;
+     }
+
+
+
+
+
+
+
+
+    .icon{
+        margin-top: -3px;
+        padding-left: 20px;
+        padding-top: 10px;
+        height: 27px;  
+    }
+
+
+
+    i{
+        width: 20px;
+    }
+
+    .news-button{
+        background-color: skyblue;
+    }
+    button{
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color:rgb(4, 74, 102);
+        color: #fff;
+        cursor: pointer;
+        width: 150px;
+    }
+    button:active{
+        background-color: green;
+    }
+
+
+
+
+
+
+
+/* Icon buttons animations */
+.icon button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.icon button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(45deg, #00BCD4, #2196F3);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.icon button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+.icon button:hover:before {
+    width: 100%;
+}
+
+.icon button i {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.icon button:hover i {
+    transform: scale(1.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Success Stories Section */
+.success-stories {
+    margin-top: 40px;
+}
+
+.success-stories h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: yellow;
+}
+
+.story-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.story-card {
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.story-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.story-content h3 {
+    font-size: 24px;
+    color: #333;
+}
+
+.story-content p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Forum Section */
+.discussion-forum {
+    margin-top: 40px;
+}
+
+.discussion-forum h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: yellow;
+}
+p{
+    color:white;
+    font-size: 20px;
+}
+.forum-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.forum-post {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.forum-post h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+.forum-post p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Modal for Adding Story/Post */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+/* Input Fields and Textareas Styling */
+input[type="text"],
+textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style for the Textarea (when typing) */
+textarea {
+    height: 150px;
+    resize: none;
+}
+
+textarea:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+/* Modal and Overlay Styles */
+.modal-content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    width: 500px;
+    margin: 50px auto;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #aaa;
+    cursor: pointer;
+    
+}
+
+.close:hover {
+    color: black;
+}
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Scrollable sections */
+.success-stories .story-list, .discussion-forum .forum-list {
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding-right: 10px; /* Optional, adds padding for scroll */
+}
+
+/* Style for the sections */
+.success-stories, .discussion-forum {
+    margin-bottom: 30px;
+}
+
+/* Optional: Style for story cards and posts to improve visual clarity */
+.story-card, .forum-post {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    margin-top: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    width: 60px;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Success story card hover effect */
+.story-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+/* Animation for container section */
+.container {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s forwards ease-in-out;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

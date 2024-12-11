@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4Ps Monthly Salary Computation</title>
+    <link rel="stylesheet" href="user-salary.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>4Ps Monthly Salary Computation</h1>
+        <div class="calculator-form">
+            <div class="form-group">
+                <label for="family-size">Number of Family Members:</label>
+                <input type="number" id="family-size" placeholder="Enter family size " required>
+            </div>
+            <div class="form-group">
+                <label for="elementary-children">Children in Elementary School:</label>
+                <input type="number" id="elementary-children" placeholder="Enter count " required>
+            </div>
+            <div class="form-group">
+                <label for="highschool-children">Children in High School:</label>
+                <input type="number" id="highschool-children" placeholder="Enter count " required>
+            </div>
+            <div class="form-group">
+                <label for="seniorhigh-children">Children in Senior High School:</label>
+                <input type="number" id="seniorhigh-children" placeholder="Enter count " required>
+            </div>
+            <div class="form-group">
+                <label for="monthly-support">Base Monthly Support (₱):</label>
+                <input type="number" id="monthly-support" placeholder="Enter base support " maxlength="6" required>
+            </div>
+            <button type="button" id="compute-salary">Compute Monthly Salary</button>
+        </div>
+        <div class="result-container">
+            <h2>Computed Monthly Salary</h2>
+            <p id="computed-salary">₱0.00</p>
+        </div>
+        <div class="explanation-section">
+            <h2>Salary Breakdown</h2>
+            <p id="salary-explanation">Your salary details will appear here after computation.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("compute-salary").addEventListener("click", function () {
+            // Get input values
+            const familySize = parseInt(document.getElementById("family-size").value) || 0;
+            const elementaryChildren = parseInt(document.getElementById("elementary-children").value) || 0;
+            const highSchoolChildren = parseInt(document.getElementById("highschool-children").value) || 0;
+            const seniorHighChildren = parseInt(document.getElementById("seniorhigh-children").value) || 0;
+            const baseSupport = parseFloat(document.getElementById("monthly-support").value) || 0;
+
+            // Validation: Ensure input values are 30 or below
+            if (
+                familySize > 30 || 
+                elementaryChildren > 30 || 
+                highSchoolChildren > 30 || 
+                seniorHighChildren > 30
+            ) {
+                alert("Values for family members and children must be 30 or below.");
+                return;
+            }
+
+            // Validate base support input
+            if (baseSupport <= 0 || baseSupport > 999999) {
+                alert("Base support must be a positive value up to 6 digits.");
+                return;
+            }
+
+            // Additional support rates
+            const elementaryRate = 300; // ₱300 per elementary child
+            const highSchoolRate = 500; // ₱500 per high school child
+            const seniorHighRate = 700; // ₱700 per senior high child
+
+            // Salary computation logic
+            const elementarySupport = elementaryChildren * elementaryRate;
+            const highSchoolSupport = highSchoolChildren * highSchoolRate;
+            const seniorHighSupport = seniorHighChildren * seniorHighRate;
+
+            const totalAdditionalSupport = elementarySupport + highSchoolSupport + seniorHighSupport;
+            const totalSalary = baseSupport + totalAdditionalSupport;
+
+            // Display computed salary
+            document.getElementById("computed-salary").textContent = `₱${totalSalary.toFixed(2)}`;
+
+            // Display salary explanation
+            document.getElementById("salary-explanation").textContent = `
+                Your base monthly support is ₱${baseSupport.toFixed(2)}. 
+                Additional support:
+                - Elementary: ₱${elementarySupport.toFixed(2)} (${elementaryChildren} children at ₱300 each)
+                - High School: ₱${highSchoolSupport.toFixed(2)} (${highSchoolChildren} children at ₱500 each)
+                - Senior High: ₱${seniorHighSupport.toFixed(2)} (${seniorHighChildren} children at ₱700 each)
+                Total monthly salary is ₱${totalSalary.toFixed(2)}.
+            `;
+        });
+
+        // Prevent invalid values on input
+        document.querySelectorAll("input[type='number']").forEach(input => {
+            input.addEventListener("input", function () {
+                // For family size and children fields, ensure the value is between 0 and 30
+                if (["family-size", "elementary-children", "highschool-children", "seniorhigh-children"].includes(this.id)) {
+                    if (parseInt(this.value) > 30) {
+                        this.value = 30; // Automatically set max to 30
+                        alert("Values must be 30 or below.");
+                    }
+                }
+
+                // For base support, ensure max length is 6
+                if (this.id === "monthly-support" && this.value.length > 6) {
+                    this.value = this.value.slice(0, 6); // Limit to 6 digits
+                }
+            });
+        });
+    </script>
+</body>
+</html>
